@@ -1,0 +1,11 @@
+[Unit]
+Description=Make minor version of outgoing PTP 2 packets on %I be zero
+After=sys-subsystem-net-devices-%i.device
+Before=ptp4l.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/ptpver20 %I
+
+[Install]
+WantedBy=multi-user.target

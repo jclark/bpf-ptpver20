@@ -14,4 +14,8 @@ vmlinux.h:
 clean:
 	-rm -f vmlinux.h $(PROG).bpf.o $(PROG).skel.h $(PROG)
 
-.PHONY: clean
+install: $(PROG)
+	install -m 755 $(PROG) /usr/local/sbin
+	instal -m 644 $(PROG).service /etc/systemd/system
+
+.PHONY: clean install
