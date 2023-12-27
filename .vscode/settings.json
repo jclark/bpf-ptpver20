@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"ptpver20.skel.h": "c",
+		"errno.h": "c",
+		"stdbool.h": "c",
+		"unistd.h": "c",
+		"signal.h": "c"
+	}
+}
