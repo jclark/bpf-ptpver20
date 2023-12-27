@@ -49,7 +49,7 @@ static int run(char *ifname) {
 		return err;
 	struct ptpver20_bpf *skel = ptpver20_bpf__open_and_load();
 	if (!skel)
-		return print_err("failed to load BPF skeleton", -ENOMEM);
+		return print_err("failed to load BPF program", -ENOMEM);
 	err = create_hook(skel, ifindex);
 	ptpver20_bpf__destroy(skel);
 	return err;
