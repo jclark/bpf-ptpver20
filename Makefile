@@ -16,6 +16,6 @@ clean:
 
 install: $(PROG)
 	install -m 755 $(PROG) /usr/local/sbin
-	instal -m 644 $(PROG).service /etc/systemd/system
+	install -m 644 $(PROG)@.service /etc/systemd/system
 
 .PHONY: clean install
