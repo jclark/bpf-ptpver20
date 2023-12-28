@@ -22,9 +22,43 @@ Build prerequisites
 * bpftool
 * libbpf-devel
 
+Build and install:
+
+```
+make
+sudo make install
+```
+
+This also installs a systemd service `ptpver20@`, with the instance being the interface.
+Just start the service to make sure ptp4l works.
+
+```
+sudo systemctl start ptpver20@end0
+```
+
+Here the interface name is `end0`.
+
+If you have problems, make sure that you are allowing PTP packets through the firewall.
+
 References:
 * https://patchwork.kernel.org/project/netdevbpf/patch/20210512103451.989420-3-memxor@gmail.com/
 * https://nakryiko.com/posts/bpf-core-reference-guide/
 * https://github.com/libbpf/libbpf-bootstrap/ (specifically tc example)
 * https://nakryiko.com/posts/libbpf-bootstrap/
 * https://taoshu.in/unix/modify-udp-packet-using-ebpf.html
+
+**Issues**
+
+libbpf will display the following message:
+
+```
+libbpf: Kernel error message: Exclusivity flag on, cannot modify
+```
+
+if there is already a qdisc on the interface.  The message is harmless. You can also remove the
+
+```
+tc qdisc del dev end0 clsact
+```
+
+I should fix this filtering out the message with libbpf_set_print (level LIBBPF_WARN).
