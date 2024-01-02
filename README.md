@@ -1,5 +1,8 @@
 This program loads and attaches a BPF TC egress filter that sets the minor version of PTP v2 packets to 0.
 
+*LinuxPTP 4.2 incorporated a patch to make the PTP minor version configurable,
+so this program is no longer useful, except as an example.*
+
 The purpose of this is to work around a defect in the ethernet PHY used by the Raspberry Pi CM4,
 which is that an outgoing PTP packet is only timestamped if its minor version is 0.
 LinuxPTP 4.0 generates packets with a minor verson of 1, so it needs patching in order
